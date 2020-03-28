@@ -1,0 +1,33 @@
+# - Ansible -------------------------------------------------------------------
+
+ansible-retry/
+roles/
+tests/
+unittest/
+
+# Secret key.
+secret.txt
+
+# Private variables.
+private_vars/*
+
+# SSH Key.
+files/id_*
+
+# - Other ---------------------------------------------------------------------
+
+# Desktop files.
+.directory
+
+# Python stuffs.
+*.pyc
+*.pyo
+__pycache__
+
+# Vagrant.
+.vagrant/
+.zcache/
+ubuntu-*-cloudimg-console.log
+
+# Virtualenv.
+.venv/
