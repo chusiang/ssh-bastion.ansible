@@ -1,7 +1,24 @@
 Ansible Playbooks: SSH Bashtion LAB
 =========
 
-A Ansible LAB with SSH bashtion host.
+A Ansible LAB with SSH bashtion host (jump).
+
+| Name    | Public IP | Private IP |
+|---------|-----------|------------|
+| jump    | DHCP      | 172.1.1.10 |
+| server1 | Null      | 172.1.1.11 |
+
+SSH:
+
+* Workstion --> jump: OK
+* Workstion --> jump --> server1: OK
+* Workstion --> server1: No.
+
+Normal ping (not via Ansible):
+
+* Workstion --> jump / Public IP: OK.
+* Workstion --> jump / Private IP: No.
+* Workstion --> server1 / Private IP: No.
 
 Requirements
 ------------
@@ -32,12 +49,6 @@ None.
 
 Usage
 -----
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
 
 1. Boot the bastion and managed node.
 
