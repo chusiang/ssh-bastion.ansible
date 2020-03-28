@@ -1,0 +1,10 @@
+---
+
+- name: Ping all nodes.
+  hosts: all
+
+  tasks:
+    - name: Test some connections with ping module.
+      ping:
+
+# vim: ft=yaml.ansible :
