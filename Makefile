@@ -7,8 +7,10 @@ PLAYBOOKS = $(shell ls *.yml | sed '/requirements/d')
 main: check
 
 init:
+	@echo "==> Create ansible-retry/ directory .."
 	if [ ! -d "ansible-retry" ]; then mkdir "ansible-retry"; fi
-	# ansible-galaxy install -f -p roles -r requirements.yml
+	@echo
+	@echo "==> Run playbook of setup_control_machine.yml .."
 	ansible-playbook setup_control_machine.yml
 
 # - Check ---------------------------------------------------------------------
@@ -16,16 +18,20 @@ init:
 check: syntax_check lint_check yaml_check
 
 syntax_check:
+	@echo "==> Checking Ansible playbooks syntax .."
 	ansible-playbook --syntax-check $(PLAYBOOKS)
 
 lint_check:
+	@echo "==> Checking Ansible playbooks lint .."
 	ansible-lint $(PLAYBOOKS)
 
 yaml_check:
+	@echo "==> Checking YAML syntax .."
 	find -name "*.yml" -type f -not -path "./roles/*"		\
 		-exec yamllint -c .yamllint.yaml {} \;
 
 travis_check:
+	@echo "==> Checking Travis CI syntax .."
 	travis lint .travis.yml
 
 # - Vagrant ---------------------------------------------------------------------
@@ -43,6 +49,12 @@ ip:
 
 run:
 	vagrant provision
+
+# - Ansible -------------------------------------------------------------------
+
+ping:
+	@echo "==> Run playbook of ping_all.yml .."
+	ansible-playbook ping_all.yml
 
 # - Clean ---------------------------------------------------------------------
 
