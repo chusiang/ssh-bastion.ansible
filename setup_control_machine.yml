@@ -1,0 +1,18 @@
+---
+
+- name: Setup the workstation
+  hosts: localhost
+
+  tasks:
+    - name: Generate the ssh_config.
+      template:
+        src: templates/bastion_ssh_config.cfg
+        dest: files/bastion_ssh_config.cfg
+
+    - name: Add the ssh_config.
+      blockinfile:
+        block: "{{ lookup('file', './files/bastion_ssh_config.cfg') }}"
+        path: ~/.ssh/config
+        backup: yes
+
+# vim: ft=yaml.ansible :

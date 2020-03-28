@@ -3,7 +3,8 @@
 ansible-retry/
 roles/
 tests/
-unittest/
+
+files/bastion_ssh_config.cfg
 
 # Secret key.
 secret.txt
