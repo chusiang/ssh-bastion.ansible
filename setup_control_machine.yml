@@ -3,7 +3,22 @@
 - name: Setup the workstation
   hosts: localhost
 
+  pre_tasks:
+    - name: Get the public ip address of bastion.
+      shell: vagrant ssh jump -c "hostname -I | cut -d' ' -f2" 2>/dev/null
+      changed_when: false
+      register: bastion_public_ip
+
+    - name: Define ssh_bastion_ip vars.
+      set_fact:
+        ssh_bastion_ip: "{{ bastion_public_ip.stdout }}"
+
   tasks:
+    - name: Generate the hosts.
+      template:
+        src: templates/hosts
+        dest: hosts
+
     - name: Generate the ssh_config.
       template:
         src: templates/bastion_ssh_config.cfg
