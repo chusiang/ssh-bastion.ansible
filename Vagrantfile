@@ -20,13 +20,13 @@ instances = [
     :name       => "jump",
     :image      => "ubuntu/bionic64",
     :public_net => true,
-    :private_ip => "172.1.1.11"
+    :private_ip => "172.1.1.10"
   },
   {
     :name       => "server1",
     :image      => "ubuntu/bionic64",
     :public_net => false,
-    :private_ip => "172.1.1.12"
+    :private_ip => "172.1.1.11"
   }
 ]
 
