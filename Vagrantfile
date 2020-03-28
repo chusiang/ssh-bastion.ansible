@@ -1,10 +1,14 @@
 # -*- mode: ruby -*-
 
+# =============================================================================
+#
 # Network connection:
 #
 #   Workstion --> jump: OK
 #   Workstion --> jump --> server1: OK
 #   Workstion --> server1: No.
+#
+# =============================================================================
 
 # Maybe we need modify this variable for different network environment.
 BRIDGE_INTERFACE = "en4: Thunderbolt Ethernet"
@@ -26,14 +30,12 @@ instances = [
   }
 ]
 
-# Main
-######
+# = Main ======================================================================
 
 Vagrant.configure("2") do |config|
 
   # Loop by each.
   instances.each do |instance|
-
     config.vm.define instance[:name] do |node|
       node.vm.box = instance[:image].to_s
 
@@ -43,6 +45,8 @@ Vagrant.configure("2") do |config|
       node.vm.provider "virtualbox" do |vb|
         vb.linked_clone = true
       end
+
+      # - Network -------------------------------------------------------------
 
       # Bridge network. (Jump box only)
       if ( instance[:public_net] == true )
@@ -56,15 +60,12 @@ Vagrant.configure("2") do |config|
         ip: instance[:private_ip],
         virtualbox__intnet: true
 
+      # - Provision -----------------------------------------------------------
+
       node.vm.provision "shell",
         inline: "echo 'set -o vi' >> /etc/bash.bashrc"
 
-      # node.vm.provision "ansible" do |ansible|
-      #   ansible.playbook = "setup.yml"
-      #   ansible.become = true
-      # end
     end
-
   end
 end
 
