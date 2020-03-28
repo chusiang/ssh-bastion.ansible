@@ -1,9 +1,7 @@
 # hosts file for ssh-bashtion.ansible
 
 [bastion]
-jump    ansible_ssh_host={{ ssh_bastion_ip }}  private_ip=172.1.1.10  ansible_ssh_private_key_file=".vagrant/machines/jump/virtualbox/private_key"
+jump    ansible_ssh_host={{ ssh_bastion_ip }}  private_ip=172.1.1.10  ansible_ssh_private_key_file={{ ssh_bastion_private_key }}
 
 [managed_nodes]
-server1 ansible_ssh_host=172.1.1.11  private_ip=172.1.1.11  ansible_ssh_private_key_file=".vagrant/machines/server1/virtualbox/private_key"
-
-# server2 ansible_ssh_host=172.1.1.12     private_ip=172.1.1.12 ansible_ssh_private_key_file=".vagrant/machines/server2/virtualbox/private_key"
+server1 ansible_ssh_host=172.1.1.11  private_ip=172.1.1.11  ansible_ssh_private_key_file={{ ssh_server1_private_key }}

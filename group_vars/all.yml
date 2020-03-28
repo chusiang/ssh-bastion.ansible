@@ -4,3 +4,6 @@
 ssh_remote_user: vagrant
 ssh_control_persist: 5m
 ssh_strict_host_key_checking: "no"
+
+ssh_bastion_private_key: ".vagrant/machines/jump/virtualbox/private_key"
+ssh_server1_private_key: ".vagrant/machines/server1/virtualbox/private_key"
