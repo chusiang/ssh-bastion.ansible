@@ -4,12 +4,12 @@
 # Parser each playbooks with `*.yml`, and no include `requirements*.yml`.
 PLAYBOOKS = $(shell ls *.yml | sed '/requirements/d')
 
-
 main: check
 
 init:
 	if [ ! -d "ansible-retry" ]; then mkdir "ansible-retry"; fi
-	ansible-galaxy install -f -p roles -r requirements.yml
+	# ansible-galaxy install -f -p roles -r requirements.yml
+	ansible-playbook setup_control_machine.yml
 
 # - Check ---------------------------------------------------------------------
 
@@ -47,7 +47,9 @@ run:
 # - Clean ---------------------------------------------------------------------
 
 clean:
-	rm -f setup.retry ansible-retry/*				\
-		builds/output.*.log tests/output.*.log			\
-		ubuntu-*-cloudimg-console.log
+	-rm -f setup.retry ansible-retry/*				\
+		ubuntu-*-cloudimg-console.log				\
+		/tmp/ssh-vagrant@*
+
+cleanall: clean
 	vagrant destroy -f
