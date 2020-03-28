@@ -5,7 +5,9 @@
 
   pre_tasks:
     - name: Get the public ip address of bastion.
-      shell: vagrant ssh jump -c "hostname -I | cut -d' ' -f2" 2>/dev/null
+      shell: |
+        set -o pipefail
+        vagrant ssh jump -c "hostname -I | cut -d' ' -f2" 2>/dev/null
       changed_when: false
       register: bastion_public_ip
 
