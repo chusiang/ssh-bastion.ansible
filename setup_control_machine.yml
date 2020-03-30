@@ -11,9 +11,25 @@
       changed_when: false
       register: bastion_public_ip
 
+    - name: Get the private ip address of bastion.
+      shell: |
+        set -o pipefail
+        vagrant ssh jump -c "hostname -I | cut -d' ' -f2" 2>/dev/null
+      changed_when: false
+      register: bastion_private_ip
+
+    - name: Get the private ip address of 1st managed node.
+      shell: |
+        set -o pipefail
+        vagrant ssh server1 -c "hostname -I | cut -d' ' -f2" 2>/dev/null
+      changed_when: false
+      register: server1_private_ip
+
     - name: Define ssh_bastion_ip vars.
       set_fact:
-        ssh_bastion_ip: "{{ bastion_public_ip.stdout }}"
+        ssh_bastion_public_ip: "{{ bastion_public_ip.stdout }}"
+        ssh_bastion_private_ip: "{{ bastion_private_ip.stdout }}"
+        ssh_server1_private_ip: "{{ server1_private_ip.stdout }}"
 
   tasks:
     - name: Generate the hosts.
