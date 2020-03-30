@@ -1,7 +1,7 @@
-Ansible Playbooks: SSH Bashtion LAB
+Ansible Playbooks: SSH Bastion LAB
 =========
 
-A Ansible LAB with SSH bashtion host (jump).
+A Ansible LAB with SSH bastion host (jump).
 
 | Name    | Public IP | Private IP |
 |---------|-----------|------------|
@@ -32,7 +32,7 @@ Variables
 ```
 $ cat group_vars/all.yml
 ---
-# vars file for ssh-bashtion.ansible
+# vars file for ssh-bastion.ansible
 
 ssh_remote_user: vagrant
 ssh_bastion_private_key: ".vagrant/machines/jump/virtualbox/private_key"

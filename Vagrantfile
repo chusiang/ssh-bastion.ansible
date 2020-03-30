@@ -13,7 +13,7 @@
 # Maybe we need modify this variable for different network environment.
 BRIDGE_INTERFACE = "en4: Thunderbolt Ethernet"
 
-DOMAIN = "ssh-bashtion.local"
+DOMAIN = "ssh-bastion.local"
 
 instances = [
   {

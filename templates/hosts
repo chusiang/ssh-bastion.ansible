@@ -1,4 +1,4 @@
-# hosts file for ssh-bashtion.ansible
+# hosts file for ssh-bastion.ansible
 
 [bastion]
 jump    ansible_ssh_host={{ ssh_bastion_public_ip }}  ansible_ssh_private_key_file={{ ssh_bastion_private_key }}

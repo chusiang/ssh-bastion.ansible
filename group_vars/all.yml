@@ -1,5 +1,5 @@
 ---
-# vars file for ssh-bashtion.ansible
+# vars file for ssh-bastion.ansible
 
 ssh_remote_user: vagrant
 ssh_control_persist: 5m
